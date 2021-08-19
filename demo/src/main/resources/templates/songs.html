@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/songsadded}" th:object="${songs}" method="post">
+
+    <div th:each="song : ${songRepository}">
+        <h2>Title: <span th:text="${song.title}"></span></h2>
+        <p>length: <span th:text="${song.length}"></span></p>
+        <p>Track Number: <span th:text="${song.trackNumber}"></span></p>
+        <p>Album: <span th:text="${albumTitle}"></span></p>
+    </div>
+</form>
+</body>
+</html>
