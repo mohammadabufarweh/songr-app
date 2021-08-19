@@ -12,13 +12,16 @@ import java.util.List;
 public class AlbumController {
     @Autowired
     AlbumRepository albumRepositiry;
+    @Autowired
+    SongRepository songRepository;
+
 //    @GetMapping("/hello")
 //    @ResponseBody
 //    public String getHello() {
 //        return "Hello World";
 //    }
 //    @GetMapping("/hello/{word}")
-//
+
 //    public String getCapitalize(Model model, @PathVariable String word){
 //        model.addAttribute("word", word.toUpperCase());
 //      return "capitalize.html";
@@ -47,6 +50,11 @@ public class AlbumController {
         albumRepositiry.save(album);
         return new RedirectView ("/albums");
     }
-
+    @GetMapping("/addsong/{id}")
+    public String getalbum( Model model, @PathVariable Integer id){
+        Album album= albumRepositiry.findById(id).get();
+        model.addAttribute("album", album);
+        return "showsong.html";
+    }
 
 }

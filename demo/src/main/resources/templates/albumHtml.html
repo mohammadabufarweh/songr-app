@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="general.css">
 </head>
 <body>
-<form th:action="@{/addalbum}" th:object="${albums}" method="post">
+<form th:action="@{/addalbum}" th:object="${album}" method="post">
 
 <h1>Title <input type="text" field="*{title}"  name="title" /></h1>
     <p> Artist<input type="text" field="*{artist}" name="artist" /></p>
@@ -17,12 +17,15 @@
     <input type="submit" value="submit">
 </form>
 
-<div class ="content" th:each="albums : ${albumRepositiry}">
-    <p>Album title: <span th:text="${albums.title}"></span></p>
-    <p>Album artist: <span th:text="${albums.artist}"></span></p>
-    <p>Album songCount: <span th:text="${albums.songCount}"></span></p>
-    <p>Album length: <span th:text="${albums.length}"></span></p>
-    <span> <img th:src=${albums.imageUrl}></img></span>
+<div class ="content" th:each="album : ${albumRepositiry}">
+    <p>Album title: <span th:text="${album.title}"></span></p>
+    <p>Album songCount: <span th:text="${album.songCount}"></span></p>
+    <p>Album artist: <span th:text="${album.artist}"></span></p>
+    <p>Album length: <span th:text="${album.length}"></span></p>
+    <span> <img th:src=${album.imageUrl}></img></span>
+    <a th:href="@{/addsong/{id}(id=${album.id})}">Add Song and show albums</a>
+    <a th:href="@{/songs}">All songs </a>
+
 </div>
 </body>
 </html>
